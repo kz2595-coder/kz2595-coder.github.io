@@ -1,0 +1,11 @@
+.DS_Store
+.ipynb_checkpoints/
+_build/
+
+# make sure Labs aren't included
+Lab*.ipynb
+lab*.ipynb
+
+# virtual environments; not needed in Python 3.13+, as a .gitignore is added to that folder
+.venv/
+myenv/
