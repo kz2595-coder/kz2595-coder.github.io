@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project 2: Female Tertiary Enrollment vs. CO₂ Per Capita &#8212; Jasmine&#39;s Portfolio</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Project2/project2_analysis';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Lab 11" href="../Project1/lab11.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Jasmine's Portfolio</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    [kz2595]’s Portfolio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Project1/project1_analysis.html">Project 1: Diaspora Earnings Snapshot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Project1/lab11.html">Lab 11</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 2: Female Tertiary Enrollment vs. CO₂ Per Capita</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Project2/project2_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project 2: Female Tertiary Enrollment vs. CO₂ Per Capita</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-i-m-trying-to-answer">What I’m trying to answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-i-m-using-2-provided-1-external">Data I’m using (2 provided + 1 external)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-plan">My plan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-libraries">Environment &amp; libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset-a-co2-per-capita">Load Dataset A: CO₂ per capita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attach-iso-codes-from-dataset-b-clean-country-names">Attach ISO codes from Dataset B (clean country names)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-dataset-c-female-tertiary-enrollment-world-bank-se-ter-enrr-fe">Download Dataset C: female tertiary enrollment (World Bank <code class="docutils literal notranslate"><span class="pre">SE.TER.ENRR.FE</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-to-co2-countries-and-merge-iso-year">Filter to CO₂ countries and merge (ISO + year)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-stats">Quick stats</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-choices">Visualization choices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-i-see">What I see</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-how-id-improve">Limitations and how I’d improve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-reproduce">How to reproduce</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-2-female-tertiary-enrollment-vs-co2-per-capita">
+<h1>Project 2: Female Tertiary Enrollment vs. CO₂ Per Capita<a class="headerlink" href="#project-2-female-tertiary-enrollment-vs-co2-per-capita" title="Link to this heading">#</a></h1>
+<p>I’m exploring whether countries with higher female tertiary enrollment also tend to have higher CO₂ emissions per person, or if the two move independently. My hunch is that industrialization and income growth can raise both emissions and education access, but energy mix and policy might break the link.</p>
+<section id="what-i-m-trying-to-answer">
+<h2>What I’m trying to answer<a class="headerlink" href="#what-i-m-trying-to-answer" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For China, India, the US, and the UK, do female tertiary enrollment and CO₂ per capita rise together in overlapping years?</p></li>
+<li><p>Over time, who moves in tandem and who diverges?</p></li>
+<li><p>I want one combined visualization (animated scatter + a static snapshot) that shows both measures on the same chart.</p></li>
+</ul>
+</section>
+<section id="data-i-m-using-2-provided-1-external">
+<h2>Data I’m using (2 provided + 1 external)<a class="headerlink" href="#data-i-m-using-2-provided-1-external" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Dataset A (provided)</strong> <code class="docutils literal notranslate"><span class="pre">co2-emissions-per-capita.csv</span></code>: annual CO₂ per person for China, India, UK, US, World.</p></li>
+<li><p><strong>Dataset B (provided)</strong> <code class="docutils literal notranslate"><span class="pre">owid-co2-data.csv</span></code>: I only use this to grab ISO codes so the country names line up cleanly.</p></li>
+<li><p><strong>Dataset C (external API)</strong> World Bank indicator <code class="docutils literal notranslate"><span class="pre">SE.TER.ENRR.FE</span></code>: female gross tertiary enrollment (%).</p></li>
+</ul>
+<p>Why I need Dataset C: the provided files don’t include education. To meet the “two datasets in one chart” requirement, I have to pull education from the World Bank, which requires internet.</p>
+</section>
+<section id="my-plan">
+<h2>My plan<a class="headerlink" href="#my-plan" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Load Dataset A, standardize column names, and attach ISO codes from Dataset B; drop the World aggregate.</p></li>
+<li><p>Download Dataset C from the World Bank, reshape wide → long, and keep numeric years/values.</p></li>
+<li><p>Merge A and C on ISO + year so I only keep overlapping observations.</p></li>
+<li><p>Check Pearson correlation; build a 1990+ animated scatter with an OLS trendline.</p></li>
+<li><p>Add a latest-year static scatter for easy screenshots; jot down what I see and what’s missing.</p></li>
+</ol>
+</section>
+<section id="environment-libraries">
+<h2>Environment &amp; libraries<a class="headerlink" href="#environment-libraries" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+import io
+import zipfile
+import urllib.request
+
+import pandas as pd
+import plotly.express as px
+
+pd.set_option(&#39;display.max_columns&#39;, 10)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-dataset-a-co2-per-capita">
+<h2>Load Dataset A: CO₂ per capita<a class="headerlink" href="#load-dataset-a-co2-per-capita" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+co2_pc = pd.read_csv(&#39;co2-emissions-per-capita.csv&#39;)
+co2_pc = co2_pc.rename(columns={
+    &#39;Entity&#39;: &#39;country&#39;,
+    &#39;Year&#39;: &#39;year&#39;,
+    &#39;Annual CO₂ emissions (per capita)&#39;: &#39;co2_per_capita&#39;
+})
+co2_pc.head()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attach-iso-codes-from-dataset-b-clean-country-names">
+<h2>Attach ISO codes from Dataset B (clean country names)<a class="headerlink" href="#attach-iso-codes-from-dataset-b-clean-country-names" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+iso_lookup = (
+    pd.read_csv(&#39;owid-co2-data.csv&#39;, usecols=[&#39;country&#39;, &#39;iso_code&#39;])
+    .dropna()
+    .drop_duplicates()
+)
+co2_pc = co2_pc.merge(iso_lookup, on=&#39;country&#39;, how=&#39;left&#39;)
+# drop World aggregate and rows without ISO
+co2_pc = co2_pc[co2_pc[&#39;iso_code&#39;].notna() &amp; (co2_pc[&#39;country&#39;] != &#39;World&#39;)]
+co2_pc.sample(5, random_state=0)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-dataset-c-female-tertiary-enrollment-world-bank-se-ter-enrr-fe">
+<h2>Download Dataset C: female tertiary enrollment (World Bank <code class="docutils literal notranslate"><span class="pre">SE.TER.ENRR.FE</span></code>)<a class="headerlink" href="#download-dataset-c-female-tertiary-enrollment-world-bank-se-ter-enrr-fe" title="Link to this heading">#</a></h2>
+<p>I’m downloading the indicator ZIP, picking the CSV, converting wide → long, and keeping numeric years/values plus ISO codes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+url = &#39;https://api.worldbank.org/v2/en/indicator/SE.TER.ENRR.FE?downloadformat=csv&#39;
+with urllib.request.urlopen(url) as resp:
+    z = zipfile.ZipFile(io.BytesIO(resp.read()))
+    csv_name = [n for n in z.namelist() if n.startswith(&#39;API_SE.TER.ENRR.FE&#39;) and n.endswith(&#39;.csv&#39;)][0]
+    female_raw = pd.read_csv(z.open(csv_name), skiprows=4)
+
+female_long = female_raw.melt(
+    id_vars=[&#39;Country Name&#39;, &#39;Country Code&#39;],
+    var_name=&#39;year&#39;,
+    value_name=&#39;female_tertiary_enrollment&#39;
+)
+female_long[&#39;year&#39;] = pd.to_numeric(female_long[&#39;year&#39;], errors=&#39;coerce&#39;)
+female_long[&#39;female_tertiary_enrollment&#39;] = pd.to_numeric(
+    female_long[&#39;female_tertiary_enrollment&#39;], errors=&#39;coerce&#39;
+)
+female_long = female_long.dropna(subset=[&#39;year&#39;, &#39;female_tertiary_enrollment&#39;])
+female_long = female_long.rename(columns={&#39;Country Name&#39;: &#39;country_name&#39;, &#39;Country Code&#39;: &#39;iso_code&#39;})
+female_long.head()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filter-to-co2-countries-and-merge-iso-year">
+<h2>Filter to CO₂ countries and merge (ISO + year)<a class="headerlink" href="#filter-to-co2-countries-and-merge-iso-year" title="Link to this heading">#</a></h2>
+<p>I keep only the countries present in the CO₂ file, then merge on ISO and year so name differences don’t cause trouble.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+focus_iso = co2_pc[&#39;iso_code&#39;].unique()
+female_focus = female_long[female_long[&#39;iso_code&#39;].isin(focus_iso)]
+
+merged = co2_pc.merge(
+    female_focus,
+    on=[&#39;iso_code&#39;, &#39;year&#39;],
+    how=&#39;inner&#39;,
+    suffixes=(&#39;_co2&#39;, &#39;_edu&#39;)
+)
+merged = merged[[&#39;country&#39;, &#39;iso_code&#39;, &#39;year&#39;, &#39;co2_per_capita&#39;, &#39;female_tertiary_enrollment&#39;]]
+
+print(&#39;Countries:&#39;, merged[&#39;country&#39;].unique())
+print(&#39;Rows merged:&#39;, len(merged))
+merged.head()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="quick-stats">
+<h2>Quick stats<a class="headerlink" href="#quick-stats" title="Link to this heading">#</a></h2>
+<p>I check the overall Pearson correlation and also look at the latest year to see who’s highest on enrollment and emissions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+corr = merged[[&#39;female_tertiary_enrollment&#39;, &#39;co2_per_capita&#39;]].corr().iloc[0, 1]
+print(f&#39;Pearson correlation (all years, all countries): {corr:.2f}&#39;)
+
+latest_year = merged[&#39;year&#39;].max()
+print(f&#39;Latest year in merge: {latest_year}&#39;)
+print(merged[merged[&#39;year&#39;] == latest_year].sort_values(&#39;female_tertiary_enrollment&#39;, ascending=False).head())
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization-choices">
+<h2>Visualization choices<a class="headerlink" href="#visualization-choices" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Scatter plot to show both measures; color = country; animate by year (1990+) to see movement.</p></li>
+<li><p>Add an OLS trendline for direction; also make a latest-year static scatter that’s easy to drop into slides.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+# Animated scatter (1990+)
+viz_df = merged[merged[&#39;year&#39;] &gt;= 1990].copy()
+fig = px.scatter(
+    viz_df,
+    x=&#39;female_tertiary_enrollment&#39;,
+    y=&#39;co2_per_capita&#39;,
+    color=&#39;country&#39;,
+    animation_frame=&#39;year&#39;,
+    hover_name=&#39;country&#39;,
+    trendline=&#39;ols&#39;,
+    labels={
+        &#39;female_tertiary_enrollment&#39;: &#39;Female tertiary enrollment (% gross)&#39;,
+        &#39;co2_per_capita&#39;: &#39;CO₂ per capita (tons/person)&#39;
+    },
+    title=&#39;Female tertiary enrollment vs CO₂ per capita (1990+, animation)&#39;
+)
+fig.update_layout(height=600)
+fig.show()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+# Latest-year static snapshot (for slides)
+snapshot_year = viz_df[&#39;year&#39;].max()
+snap = viz_df[viz_df[&#39;year&#39;] == snapshot_year]
+fig2 = px.scatter(
+    snap,
+    x=&#39;female_tertiary_enrollment&#39;,
+    y=&#39;co2_per_capita&#39;,
+    color=&#39;country&#39;,
+    text=&#39;country&#39;,
+    labels={
+        &#39;female_tertiary_enrollment&#39;: &#39;Female tertiary enrollment (% gross)&#39;,
+        &#39;co2_per_capita&#39;: &#39;CO₂ per capita (tons/person)&#39;
+    },
+    title=f&#39;Female tertiary enrollment vs CO₂ per capita ({snapshot_year})&#39;
+)
+fig2.update_traces(textposition=&#39;top center&#39;)
+fig2.update_layout(height=500)
+fig2.show()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-i-see">
+<h2>What I see<a class="headerlink" href="#what-i-see" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Overall correlation is positive: in this small set, higher female tertiary enrollment often comes with higher CO₂ per capita.</p></li>
+<li><p>US/UK stay high on both; China ramps up on both after 1990; India’s enrollment rises but emissions stay relatively low.</p></li>
+<li><p>Correlation isn’t causation: energy mix, industry, population, and policy matter a lot, and education depends on fiscal effort and demographics.</p></li>
+</ul>
+</section>
+<section id="limitations-and-how-id-improve">
+<h2>Limitations and how I’d improve<a class="headerlink" href="#limitations-and-how-id-improve" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Only four countries—adding more would make the pattern more convincing.</p></li>
+<li><p>World Bank data needs internet; I could cache it locally for offline runs.</p></li>
+<li><p>I didn’t control for GDP or renewables share; a multivariate model would tease out confounders.</p></li>
+<li><p>GitHub may not render the animation interactively; best viewed locally or on an interactive host.</p></li>
+</ul>
+</section>
+<section id="how-to-reproduce">
+<h2>How to reproduce<a class="headerlink" href="#how-to-reproduce" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Stay online (World Bank download).</p></li>
+<li><p>Run all cells in order inside <code class="docutils literal notranslate"><span class="pre">Project2</span></code>.</p></li>
+<li><p>To publish: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code> then push.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Project2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Project1/lab11.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 11</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-i-m-trying-to-answer">What I’m trying to answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-i-m-using-2-provided-1-external">Data I’m using (2 provided + 1 external)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-plan">My plan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-libraries">Environment &amp; libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset-a-co2-per-capita">Load Dataset A: CO₂ per capita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attach-iso-codes-from-dataset-b-clean-country-names">Attach ISO codes from Dataset B (clean country names)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-dataset-c-female-tertiary-enrollment-world-bank-se-ter-enrr-fe">Download Dataset C: female tertiary enrollment (World Bank <code class="docutils literal notranslate"><span class="pre">SE.TER.ENRR.FE</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-to-co2-countries-and-merge-iso-year">Filter to CO₂ countries and merge (ISO + year)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-stats">Quick stats</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-choices">Visualization choices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-i-see">What I see</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-how-id-improve">Limitations and how I’d improve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-reproduce">How to reproduce</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jasmine
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
