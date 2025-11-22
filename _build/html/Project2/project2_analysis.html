@@ -337,9 +337,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-to-co2-countries-and-merge-iso-year">Filter to CO₂ countries and merge (ISO + year)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-stats">Quick stats</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-choices">Visualization choices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-i-see">What I see</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-how-id-improve">Limitations and how I’d improve</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-reproduce">How to reproduce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-takeaways">My Takeaways</a></li>
 </ul>
             </nav>
         </div>
@@ -385,15 +383,14 @@ document.write(`
 <h2>Environment &amp; libraries<a class="headerlink" href="#environment-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-import io
-import zipfile
-import urllib.request
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib.request</span>
 
-import pandas as pd
-import plotly.express as px
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
 
-pd.set_option(&#39;display.max_columns&#39;, 10)
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -403,14 +400,29 @@ pd.set_option(&#39;display.max_columns&#39;, 10)
 <h2>Load Dataset A: CO₂ per capita<a class="headerlink" href="#load-dataset-a-co2-per-capita" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-co2_pc = pd.read_csv(&#39;co2-emissions-per-capita.csv&#39;)
-co2_pc = co2_pc.rename(columns={
-    &#39;Entity&#39;: &#39;country&#39;,
-    &#39;Year&#39;: &#39;year&#39;,
-    &#39;Annual CO₂ emissions (per capita)&#39;: &#39;co2_per_capita&#39;
-})
-co2_pc.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co2_pc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;co2-emissions-per-capita.csv&#39;</span><span class="p">)</span>
+<span class="n">co2_pc</span> <span class="o">=</span> <span class="n">co2_pc</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;Entity&#39;</span><span class="p">:</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Annual CO₂ emissions (per capita)&#39;</span><span class="p">:</span> <span class="s1">&#39;co2_per_capita&#39;</span>
+<span class="p">})</span>
+<span class="n">co2_pc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">co2_pc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;co2-emissions-per-capita.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">co2_pc</span> <span class="o">=</span> <span class="n">co2_pc</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s1">&#39;Entity&#39;</span><span class="p">:</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="s1">&#39;Annual CO₂ emissions (per capita)&#39;</span><span class="p">:</span> <span class="s1">&#39;co2_per_capita&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="p">})</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">co2_pc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;pd&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -420,16 +432,15 @@ co2_pc.head()
 <h2>Attach ISO codes from Dataset B (clean country names)<a class="headerlink" href="#attach-iso-codes-from-dataset-b-clean-country-names" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-iso_lookup = (
-    pd.read_csv(&#39;owid-co2-data.csv&#39;, usecols=[&#39;country&#39;, &#39;iso_code&#39;])
-    .dropna()
-    .drop_duplicates()
-)
-co2_pc = co2_pc.merge(iso_lookup, on=&#39;country&#39;, how=&#39;left&#39;)
-# drop World aggregate and rows without ISO
-co2_pc = co2_pc[co2_pc[&#39;iso_code&#39;].notna() &amp; (co2_pc[&#39;country&#39;] != &#39;World&#39;)]
-co2_pc.sample(5, random_state=0)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iso_lookup</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;owid-co2-data.csv&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_code&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">co2_pc</span> <span class="o">=</span> <span class="n">co2_pc</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">iso_lookup</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="c1"># drop World aggregate and rows without ISO</span>
+<span class="n">co2_pc</span> <span class="o">=</span> <span class="n">co2_pc</span><span class="p">[</span><span class="n">co2_pc</span><span class="p">[</span><span class="s1">&#39;iso_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">co2_pc</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;World&#39;</span><span class="p">)]</span>
+<span class="n">co2_pc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -440,25 +451,24 @@ co2_pc.sample(5, random_state=0)
 <p>I’m downloading the indicator ZIP, picking the CSV, converting wide → long, and keeping numeric years/values plus ISO codes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-url = &#39;https://api.worldbank.org/v2/en/indicator/SE.TER.ENRR.FE?downloadformat=csv&#39;
-with urllib.request.urlopen(url) as resp:
-    z = zipfile.ZipFile(io.BytesIO(resp.read()))
-    csv_name = [n for n in z.namelist() if n.startswith(&#39;API_SE.TER.ENRR.FE&#39;) and n.endswith(&#39;.csv&#39;)][0]
-    female_raw = pd.read_csv(z.open(csv_name), skiprows=4)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://api.worldbank.org/v2/en/indicator/SE.TER.ENRR.FE?downloadformat=csv&#39;</span>
+<span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+    <span class="n">csv_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span> <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;API_SE.TER.ENRR.FE&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">n</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">female_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">csv_name</span><span class="p">),</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-female_long = female_raw.melt(
-    id_vars=[&#39;Country Name&#39;, &#39;Country Code&#39;],
-    var_name=&#39;year&#39;,
-    value_name=&#39;female_tertiary_enrollment&#39;
-)
-female_long[&#39;year&#39;] = pd.to_numeric(female_long[&#39;year&#39;], errors=&#39;coerce&#39;)
-female_long[&#39;female_tertiary_enrollment&#39;] = pd.to_numeric(
-    female_long[&#39;female_tertiary_enrollment&#39;], errors=&#39;coerce&#39;
-)
-female_long = female_long.dropna(subset=[&#39;year&#39;, &#39;female_tertiary_enrollment&#39;])
-female_long = female_long.rename(columns={&#39;Country Name&#39;: &#39;country_name&#39;, &#39;Country Code&#39;: &#39;iso_code&#39;})
-female_long.head()
+<span class="n">female_long</span> <span class="o">=</span> <span class="n">female_raw</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Country Code&#39;</span><span class="p">],</span>
+    <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+    <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span>
+<span class="p">)</span>
+<span class="n">female_long</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">female_long</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">female_long</span><span class="p">[</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span>
+    <span class="n">female_long</span><span class="p">[</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span>
+<span class="p">)</span>
+<span class="n">female_long</span> <span class="o">=</span> <span class="n">female_long</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">])</span>
+<span class="n">female_long</span> <span class="o">=</span> <span class="n">female_long</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Country Name&#39;</span><span class="p">:</span> <span class="s1">&#39;country_name&#39;</span><span class="p">,</span> <span class="s1">&#39;Country Code&#39;</span><span class="p">:</span> <span class="s1">&#39;iso_code&#39;</span><span class="p">})</span>
+<span class="n">female_long</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -469,21 +479,20 @@ female_long.head()
 <p>I keep only the countries present in the CO₂ file, then merge on ISO and year so name differences don’t cause trouble.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-focus_iso = co2_pc[&#39;iso_code&#39;].unique()
-female_focus = female_long[female_long[&#39;iso_code&#39;].isin(focus_iso)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">focus_iso</span> <span class="o">=</span> <span class="n">co2_pc</span><span class="p">[</span><span class="s1">&#39;iso_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">female_focus</span> <span class="o">=</span> <span class="n">female_long</span><span class="p">[</span><span class="n">female_long</span><span class="p">[</span><span class="s1">&#39;iso_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">focus_iso</span><span class="p">)]</span>
 
-merged = co2_pc.merge(
-    female_focus,
-    on=[&#39;iso_code&#39;, &#39;year&#39;],
-    how=&#39;inner&#39;,
-    suffixes=(&#39;_co2&#39;, &#39;_edu&#39;)
-)
-merged = merged[[&#39;country&#39;, &#39;iso_code&#39;, &#39;year&#39;, &#39;co2_per_capita&#39;, &#39;female_tertiary_enrollment&#39;]]
+<span class="n">merged</span> <span class="o">=</span> <span class="n">co2_pc</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">female_focus</span><span class="p">,</span>
+    <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;iso_code&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">],</span>
+    <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span>
+    <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;_co2&#39;</span><span class="p">,</span> <span class="s1">&#39;_edu&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">merged</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_code&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;co2_per_capita&#39;</span><span class="p">,</span> <span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">]]</span>
 
-print(&#39;Countries:&#39;, merged[&#39;country&#39;].unique())
-print(&#39;Rows merged:&#39;, len(merged))
-merged.head()
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Countries:&#39;</span><span class="p">,</span> <span class="n">merged</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rows merged:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged</span><span class="p">))</span>
+<span class="n">merged</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -494,13 +503,12 @@ merged.head()
 <p>I check the overall Pearson correlation and also look at the latest year to see who’s highest on enrollment and emissions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-corr = merged[[&#39;female_tertiary_enrollment&#39;, &#39;co2_per_capita&#39;]].corr().iloc[0, 1]
-print(f&#39;Pearson correlation (all years, all countries): {corr:.2f}&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[[</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">,</span> <span class="s1">&#39;co2_per_capita&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pearson correlation (all years, all countries): </span><span class="si">{</span><span class="n">corr</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-latest_year = merged[&#39;year&#39;].max()
-print(f&#39;Latest year in merge: {latest_year}&#39;)
-print(merged[merged[&#39;year&#39;] == latest_year].sort_values(&#39;female_tertiary_enrollment&#39;, ascending=False).head())
+<span class="n">latest_year</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Latest year in merge: </span><span class="si">{</span><span class="n">latest_year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">merged</span><span class="p">[</span><span class="n">merged</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">latest_year</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -514,79 +522,58 @@ print(merged[merged[&#39;year&#39;] == latest_year].sort_values(&#39;female_tert
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-# Animated scatter (1990+)
-viz_df = merged[merged[&#39;year&#39;] &gt;= 1990].copy()
-fig = px.scatter(
-    viz_df,
-    x=&#39;female_tertiary_enrollment&#39;,
-    y=&#39;co2_per_capita&#39;,
-    color=&#39;country&#39;,
-    animation_frame=&#39;year&#39;,
-    hover_name=&#39;country&#39;,
-    trendline=&#39;ols&#39;,
-    labels={
-        &#39;female_tertiary_enrollment&#39;: &#39;Female tertiary enrollment (% gross)&#39;,
-        &#39;co2_per_capita&#39;: &#39;CO₂ per capita (tons/person)&#39;
-    },
-    title=&#39;Female tertiary enrollment vs CO₂ per capita (1990+, animation)&#39;
-)
-fig.update_layout(height=600)
-fig.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Animated scatter (1990+)</span>
+<span class="n">viz_df</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[</span><span class="n">merged</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1990</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">viz_df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;co2_per_capita&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
+    <span class="n">animation_frame</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+    <span class="n">hover_name</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
+    <span class="n">trendline</span><span class="o">=</span><span class="s1">&#39;ols&#39;</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">:</span> <span class="s1">&#39;Female tertiary enrollment (</span><span class="si">% g</span><span class="s1">ross)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;co2_per_capita&#39;</span><span class="p">:</span> <span class="s1">&#39;CO₂ per capita (tons/person)&#39;</span>
+    <span class="p">},</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Female tertiary enrollment vs CO₂ per capita (1990+, animation)&#39;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-# Latest-year static snapshot (for slides)
-snapshot_year = viz_df[&#39;year&#39;].max()
-snap = viz_df[viz_df[&#39;year&#39;] == snapshot_year]
-fig2 = px.scatter(
-    snap,
-    x=&#39;female_tertiary_enrollment&#39;,
-    y=&#39;co2_per_capita&#39;,
-    color=&#39;country&#39;,
-    text=&#39;country&#39;,
-    labels={
-        &#39;female_tertiary_enrollment&#39;: &#39;Female tertiary enrollment (% gross)&#39;,
-        &#39;co2_per_capita&#39;: &#39;CO₂ per capita (tons/person)&#39;
-    },
-    title=f&#39;Female tertiary enrollment vs CO₂ per capita ({snapshot_year})&#39;
-)
-fig2.update_traces(textposition=&#39;top center&#39;)
-fig2.update_layout(height=500)
-fig2.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Latest-year static snapshot (for slides)</span>
+<span class="n">snapshot_year</span> <span class="o">=</span> <span class="n">viz_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">snap</span> <span class="o">=</span> <span class="n">viz_df</span><span class="p">[</span><span class="n">viz_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">snapshot_year</span><span class="p">]</span>
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">snap</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;co2_per_capita&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">:</span> <span class="s1">&#39;Female tertiary enrollment (</span><span class="si">% g</span><span class="s1">ross)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;co2_per_capita&#39;</span><span class="p">:</span> <span class="s1">&#39;CO₂ per capita (tons/person)&#39;</span>
+    <span class="p">},</span>
+    <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Female tertiary enrollment vs CO₂ per capita (</span><span class="si">{</span><span class="n">snapshot_year</span><span class="si">}</span><span class="s1">)&#39;</span>
+<span class="p">)</span>
+<span class="n">fig2</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">textposition</span><span class="o">=</span><span class="s1">&#39;top center&#39;</span><span class="p">)</span>
+<span class="n">fig2</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">fig2</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="what-i-see">
-<h2>What I see<a class="headerlink" href="#what-i-see" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Overall correlation is positive: in this small set, higher female tertiary enrollment often comes with higher CO₂ per capita.</p></li>
-<li><p>US/UK stay high on both; China ramps up on both after 1990; India’s enrollment rises but emissions stay relatively low.</p></li>
-<li><p>Correlation isn’t causation: energy mix, industry, population, and policy matter a lot, and education depends on fiscal effort and demographics.</p></li>
-</ul>
-</section>
-<section id="limitations-and-how-id-improve">
-<h2>Limitations and how I’d improve<a class="headerlink" href="#limitations-and-how-id-improve" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Only four countries—adding more would make the pattern more convincing.</p></li>
-<li><p>World Bank data needs internet; I could cache it locally for offline runs.</p></li>
-<li><p>I didn’t control for GDP or renewables share; a multivariate model would tease out confounders.</p></li>
-<li><p>GitHub may not render the animation interactively; best viewed locally or on an interactive host.</p></li>
-</ul>
-</section>
-<section id="how-to-reproduce">
-<h2>How to reproduce<a class="headerlink" href="#how-to-reproduce" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Stay online (World Bank download).</p></li>
-<li><p>Run all cells in order inside <code class="docutils literal notranslate"><span class="pre">Project2</span></code>.</p></li>
-<li><p>To publish: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code> then push.</p></li>
-</ol>
+<section id="my-takeaways">
+<h2>My Takeaways<a class="headerlink" href="#my-takeaways" title="Link to this heading">#</a></h2>
+<p>Using all overlapping countries/years, the overall Pearson correlation between female tertiary enrollment and CO₂ per capita is about 0.35 (moderate positive).
+Country patterns diverge: many show strong positive correlations (Algeria ~0.94, Vietnam ~0.97—education rises alongside industrialization/emissions); some are weakly positive (Bangladesh ~0.50); others are negative (Andorra ~-0.65, Zambia ~-0.75—education gains while per-capita emissions fall or stay low).</p>
+<p>Globally there’s a modest tendency for enrollment and emissions to climb together, but the country-level spread is wide. Industrializing economies often see both rise; economies decarbonizing or already service-heavy can raise education while holding or lowering CO₂. Correlation here is descriptive—energy mix, GDP, policy, and demographics likely drive the differences.</p>
 </section>
 </section>
 
@@ -655,9 +642,7 @@ fig2.show()
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-to-co2-countries-and-merge-iso-year">Filter to CO₂ countries and merge (ISO + year)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-stats">Quick stats</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-choices">Visualization choices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-i-see">What I see</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-how-id-improve">Limitations and how I’d improve</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-reproduce">How to reproduce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-takeaways">My Takeaways</a></li>
 </ul>
   </nav></div>
 
