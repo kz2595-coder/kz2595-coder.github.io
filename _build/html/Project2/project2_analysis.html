@@ -411,21 +411,63 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">co2_pc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;co2-emissions-per-capita.csv&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">co2_pc</span> <span class="o">=</span> <span class="n">co2_pc</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s1">&#39;Entity&#39;</span><span class="p">:</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="s1">&#39;Annual CO₂ emissions (per capita)&#39;</span><span class="p">:</span> <span class="s1">&#39;co2_per_capita&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="p">})</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">co2_pc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">NameError</span>: name &#39;pd&#39; is not defined
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>year</th>
+      <th>co2_per_capita</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>1949</td>
+      <td>0.001992</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>1950</td>
+      <td>0.010837</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>1951</td>
+      <td>0.011625</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>1952</td>
+      <td>0.011468</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>1953</td>
+      <td>0.013123</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="attach-iso-codes-from-dataset-b-clean-country-names">
@@ -444,6 +486,70 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>year</th>
+      <th>co2_per_capita</th>
+      <th>iso_code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23450</th>
+      <td>Tanzania</td>
+      <td>1997</td>
+      <td>0.089440</td>
+      <td>TZA</td>
+    </tr>
+    <tr>
+      <th>14591</th>
+      <td>Madagascar</td>
+      <td>1963</td>
+      <td>0.083524</td>
+      <td>MDG</td>
+    </tr>
+    <tr>
+      <th>14778</th>
+      <td>Malaysia</td>
+      <td>1941</td>
+      <td>0.428633</td>
+      <td>MYS</td>
+    </tr>
+    <tr>
+      <th>2670</th>
+      <td>Belgium</td>
+      <td>1867</td>
+      <td>4.462679</td>
+      <td>BEL</td>
+    </tr>
+    <tr>
+      <th>26434</th>
+      <td>Zimbabwe</td>
+      <td>1950</td>
+      <td>1.139346</td>
+      <td>ZWE</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="download-dataset-c-female-tertiary-enrollment-world-bank-se-ter-enrr-fe">
@@ -472,6 +578,70 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country_name</th>
+      <th>iso_code</th>
+      <th>year</th>
+      <th>female_tertiary_enrollment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3193</th>
+      <td>Africa Eastern and Southern</td>
+      <td>AFE</td>
+      <td>1970.0</td>
+      <td>1.60850</td>
+    </tr>
+    <tr>
+      <th>3194</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1970.0</td>
+      <td>0.22595</td>
+    </tr>
+    <tr>
+      <th>3195</th>
+      <td>Africa Western and Central</td>
+      <td>AFW</td>
+      <td>1970.0</td>
+      <td>0.25121</td>
+    </tr>
+    <tr>
+      <th>3199</th>
+      <td>Arab World</td>
+      <td>ARB</td>
+      <td>1970.0</td>
+      <td>5.75873</td>
+    </tr>
+    <tr>
+      <th>3201</th>
+      <td>Argentina</td>
+      <td>ARG</td>
+      <td>1970.0</td>
+      <td>11.41217</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="filter-to-co2-countries-and-merge-iso-year">
@@ -496,6 +666,113 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Countries: [&#39;Afghanistan&#39; &#39;Albania&#39; &#39;Algeria&#39; &#39;Andorra&#39; &#39;Angola&#39;
+ &#39;Antigua and Barbuda&#39; &#39;Argentina&#39; &#39;Armenia&#39; &#39;Aruba&#39; &#39;Australia&#39; &#39;Austria&#39;
+ &#39;Azerbaijan&#39; &#39;Bahamas&#39; &#39;Bahrain&#39; &#39;Bangladesh&#39; &#39;Barbados&#39; &#39;Belarus&#39;
+ &#39;Belgium&#39; &#39;Belize&#39; &#39;Benin&#39; &#39;Bermuda&#39; &#39;Bhutan&#39; &#39;Bosnia and Herzegovina&#39;
+ &#39;Botswana&#39; &#39;Brazil&#39; &#39;British Virgin Islands&#39; &#39;Brunei&#39; &#39;Bulgaria&#39;
+ &#39;Burkina Faso&#39; &#39;Burundi&#39; &#39;Cambodia&#39; &#39;Cameroon&#39; &#39;Canada&#39; &#39;Cape Verde&#39;
+ &#39;Central African Republic&#39; &#39;Chad&#39; &#39;Chile&#39; &#39;China&#39; &#39;Colombia&#39; &#39;Comoros&#39;
+ &#39;Congo&#39; &#39;Costa Rica&#39; &quot;Cote d&#39;Ivoire&quot; &#39;Croatia&#39; &#39;Cuba&#39; &#39;Curacao&#39; &#39;Cyprus&#39;
+ &#39;Czechia&#39; &#39;Democratic Republic of Congo&#39; &#39;Denmark&#39; &#39;Djibouti&#39; &#39;Dominica&#39;
+ &#39;Dominican Republic&#39; &#39;East Timor&#39; &#39;Ecuador&#39; &#39;Egypt&#39; &#39;El Salvador&#39;
+ &#39;Equatorial Guinea&#39; &#39;Eritrea&#39; &#39;Estonia&#39; &#39;Eswatini&#39; &#39;Ethiopia&#39; &#39;Fiji&#39;
+ &#39;Finland&#39; &#39;France&#39; &#39;French Polynesia&#39; &#39;Gabon&#39; &#39;Gambia&#39; &#39;Georgia&#39;
+ &#39;Germany&#39; &#39;Ghana&#39; &#39;Greece&#39; &#39;Grenada&#39; &#39;Guatemala&#39; &#39;Guinea&#39; &#39;Guinea-Bissau&#39;
+ &#39;Guyana&#39; &#39;Haiti&#39; &#39;Honduras&#39; &#39;Hong Kong&#39; &#39;Hungary&#39; &#39;Iceland&#39; &#39;India&#39;
+ &#39;Indonesia&#39; &#39;Iran&#39; &#39;Iraq&#39; &#39;Ireland&#39; &#39;Israel&#39; &#39;Italy&#39; &#39;Jamaica&#39; &#39;Japan&#39;
+ &#39;Jordan&#39; &#39;Kazakhstan&#39; &#39;Kenya&#39; &#39;Kiribati&#39; &#39;Kuwait&#39; &#39;Kyrgyzstan&#39; &#39;Laos&#39;
+ &#39;Latvia&#39; &#39;Lebanon&#39; &#39;Lesotho&#39; &#39;Liberia&#39; &#39;Libya&#39; &#39;Liechtenstein&#39;
+ &#39;Lithuania&#39; &#39;Luxembourg&#39; &#39;Macao&#39; &#39;Madagascar&#39; &#39;Malawi&#39; &#39;Malaysia&#39;
+ &#39;Maldives&#39; &#39;Mali&#39; &#39;Malta&#39; &#39;Marshall Islands&#39; &#39;Mauritania&#39; &#39;Mauritius&#39;
+ &#39;Mexico&#39; &#39;Moldova&#39; &#39;Mongolia&#39; &#39;Montenegro&#39; &#39;Morocco&#39; &#39;Mozambique&#39;
+ &#39;Myanmar&#39; &#39;Namibia&#39; &#39;Nepal&#39; &#39;Netherlands&#39; &#39;New Zealand&#39; &#39;Nicaragua&#39;
+ &#39;Niger&#39; &#39;Nigeria&#39; &#39;North Korea&#39; &#39;North Macedonia&#39; &#39;Norway&#39; &#39;Oman&#39;
+ &#39;Pakistan&#39; &#39;Palau&#39; &#39;Palestine&#39; &#39;Panama&#39; &#39;Papua New Guinea&#39; &#39;Paraguay&#39;
+ &#39;Peru&#39; &#39;Philippines&#39; &#39;Poland&#39; &#39;Portugal&#39; &#39;Qatar&#39; &#39;Romania&#39; &#39;Russia&#39;
+ &#39;Rwanda&#39; &#39;Saint Kitts and Nevis&#39; &#39;Saint Lucia&#39;
+ &#39;Saint Vincent and the Grenadines&#39; &#39;Samoa&#39; &#39;Sao Tome and Principe&#39;
+ &#39;Saudi Arabia&#39; &#39;Senegal&#39; &#39;Serbia&#39; &#39;Seychelles&#39; &#39;Sierra Leone&#39; &#39;Singapore&#39;
+ &#39;Sint Maarten (Dutch part)&#39; &#39;Slovakia&#39; &#39;Slovenia&#39; &#39;Somalia&#39;
+ &#39;South Africa&#39; &#39;South Korea&#39; &#39;Spain&#39; &#39;Sri Lanka&#39; &#39;Sudan&#39; &#39;Suriname&#39;
+ &#39;Sweden&#39; &#39;Switzerland&#39; &#39;Syria&#39; &#39;Tajikistan&#39; &#39;Tanzania&#39; &#39;Thailand&#39; &#39;Togo&#39;
+ &#39;Tonga&#39; &#39;Trinidad and Tobago&#39; &#39;Tunisia&#39; &#39;Turkey&#39; &#39;Turkmenistan&#39;
+ &#39;Turks and Caicos Islands&#39; &#39;Tuvalu&#39; &#39;Uganda&#39; &#39;Ukraine&#39;
+ &#39;United Arab Emirates&#39; &#39;United Kingdom&#39; &#39;United States&#39; &#39;Uruguay&#39;
+ &#39;Uzbekistan&#39; &#39;Vanuatu&#39; &#39;Venezuela&#39; &#39;Vietnam&#39; &#39;Yemen&#39; &#39;Zambia&#39; &#39;Zimbabwe&#39;]
+Rows merged: 4218
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>iso_code</th>
+      <th>year</th>
+      <th>co2_per_capita</th>
+      <th>female_tertiary_enrollment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1970</td>
+      <td>0.147952</td>
+      <td>0.22595</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1972</td>
+      <td>0.129103</td>
+      <td>0.25742</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1973</td>
+      <td>0.134517</td>
+      <td>0.34517</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1974</td>
+      <td>0.153431</td>
+      <td>0.28596</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1975</td>
+      <td>0.166071</td>
+      <td>0.31291</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="quick-stats">
@@ -509,6 +786,18 @@ document.write(`
 <span class="n">latest_year</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Latest year in merge: </span><span class="si">{</span><span class="n">latest_year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">merged</span><span class="p">[</span><span class="n">merged</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">latest_year</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;female_tertiary_enrollment&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pearson correlation (all years, all countries): 0.35
+Latest year in merge: 2024
+        country iso_code  year  co2_per_capita  female_tertiary_enrollment
+2348      Macao      MAC  2024        1.466572                  149.559406
+1732  Hong Kong      HKG  2024        4.494174                  126.023529
+40      Albania      ALB  2024        1.591990                   92.487778
+2653   Mongolia      MNG  2024       12.859549                   87.794037
+2624    Moldova      MDA  2024        1.755157                   84.764553
 </pre></div>
 </div>
 </div>
@@ -543,6 +832,8 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -566,6 +857,8 @@ document.write(`
 <span class="n">fig2</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 </section>
