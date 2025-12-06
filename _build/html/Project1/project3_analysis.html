@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project: Analysis of NYPD Arrest Data (Year to Date) &#8212; Jasmine&#39;s Portfolio</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Project1/project3_analysis';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Lab 12" href="lab12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Jasmine's Portfolio</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    [kz2595]’s Portfolio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="project1_analysis.html">Project 1: Diaspora Earnings Snapshot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Project2/project2_analysis.html">Project 2: Female Tertiary Enrollment vs. CO₂ Per Capita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project: Analysis of NYPD Arrest Data (Year to Date)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Project1/project3_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project: Analysis of NYPD Arrest Data (Year to Date)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-research-question">1. Introduction &amp; Research Question</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-inspection">2. Data Inspection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-preparation">3. Data Cleaning &amp; Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-visualization">4. Analysis &amp; Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-observations">5. Conclusion &amp; Observations</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-analysis-of-nypd-arrest-data-year-to-date">
+<h1>Project: Analysis of NYPD Arrest Data (Year to Date)<a class="headerlink" href="#project-analysis-of-nypd-arrest-data-year-to-date" title="Link to this heading">#</a></h1>
+<section id="introduction-research-question">
+<h2>1. Introduction &amp; Research Question<a class="headerlink" href="#introduction-research-question" title="Link to this heading">#</a></h2>
+<p><strong>Dataset:</strong> NYPD Arrest Data (Year to Date). This dataset includes every arrest effected in NYC by the NYPD during the current year.
+<strong>Source:</strong> NYC Open Data API.</p>
+<p><strong>Research Question:</strong> Do arrest demographics (specifically Race) shift significantly between low-level offenses (Misdemeanors) and severe crimes (Felonies)?
+<em>Hypothesis:</em> We might observe different racial distributions depending on the severity of the alleged crime.</p>
+<p><strong>Methodology:</strong></p>
+<ol class="arabic simple">
+<li><p>Load data via Socrata API (fetching 50,000 rows to ensure statistical significance).</p></li>
+<li><p>Clean and map the <code class="docutils literal notranslate"><span class="pre">LAW_CAT_CD</span></code> column (Level of Offense).</p></li>
+<li><p>Aggregate data by Offense Level and Race.</p></li>
+<li><p>Visualize the proportional distribution using a Stacked Bar Chart.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://data.cityofnewyork.us/resource/uip8-fykc.json&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">data</span>
+
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data Loaded Successfully: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> rows, </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> columns&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data Loaded Successfully: 1000 rows, 24 columns
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-inspection">
+<h2>2. Data Inspection<a class="headerlink" href="#data-inspection" title="Link to this heading">#</a></h2>
+<p>According to the Data Dictionary, the key columns for our research are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LAW_CAT_CD</span></code>: Level of offense (F=Felony, M=Misdemeanor, V=Violation).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PERP_RACE</span></code>: Race of the suspect.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARREST_KEY</span></code>: Unique identifier for the arrest.</p></li>
+</ul>
+<p>Let’s inspect the first few rows and the unique values for the offense level.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inspect the first 5 rows</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Check unique values in the &#39;Level of Offense&#39; column to understand the codes</span>
+<span class="c1"># Based on Data Dictionary: F=Felony, M=Misdemeanor, V=Violation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unique Offense Levels found:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;law_cat_cd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="c1"># Check for missing values in critical columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Missing values check:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;law_cat_cd&#39;</span><span class="p">,</span> <span class="s1">&#39;perp_race&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>arrest_key</th>
+      <th>arrest_date</th>
+      <th>pd_cd</th>
+      <th>pd_desc</th>
+      <th>ky_cd</th>
+      <th>ofns_desc</th>
+      <th>law_code</th>
+      <th>law_cat_cd</th>
+      <th>arrest_boro</th>
+      <th>arrest_precinct</th>
+      <th>...</th>
+      <th>x_coord_cd</th>
+      <th>y_coord_cd</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>geocoded_column</th>
+      <th>:@computed_region_f5dn_yrer</th>
+      <th>:@computed_region_yeji_bk3q</th>
+      <th>:@computed_region_92fq_4b7q</th>
+      <th>:@computed_region_sbqj_enih</th>
+      <th>:@computed_region_efsh_h5xi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>298760433</td>
+      <td>2025-01-02T00:00:00.000</td>
+      <td>782</td>
+      <td>WEAPONS, POSSESSION, ETC</td>
+      <td>236</td>
+      <td>DANGEROUS WEAPONS</td>
+      <td>PL 2650101</td>
+      <td>M</td>
+      <td>Q</td>
+      <td>115</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>{'type': 'Point', 'coordinates': [0, 0]}</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>299030225</td>
+      <td>2025-01-07T00:00:00.000</td>
+      <td>105</td>
+      <td>STRANGULATION 1ST</td>
+      <td>106</td>
+      <td>FELONY ASSAULT</td>
+      <td>PL 1211200</td>
+      <td>F</td>
+      <td>M</td>
+      <td>28</td>
+      <td>...</td>
+      <td>997439</td>
+      <td>233857</td>
+      <td>40.808558</td>
+      <td>-73.952357</td>
+      <td>{'type': 'Point', 'coordinates': [-73.952357, ...</td>
+      <td>18</td>
+      <td>4</td>
+      <td>36</td>
+      <td>18</td>
+      <td>12424</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>299127494</td>
+      <td>2025-01-08T00:00:00.000</td>
+      <td>849</td>
+      <td>NY STATE LAWS,UNCLASSIFIED VIO</td>
+      <td>677</td>
+      <td>OTHER STATE LAWS</td>
+      <td>LOC00000V0</td>
+      <td>V</td>
+      <td>K</td>
+      <td>81</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>{'type': 'Point', 'coordinates': [0, 0]}</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>299188536</td>
+      <td>2025-01-09T00:00:00.000</td>
+      <td>259</td>
+      <td>CRIMINAL MISCHIEF,UNCLASSIFIED 4</td>
+      <td>351</td>
+      <td>CRIMINAL MISCHIEF &amp; RELATED OF</td>
+      <td>PL 1450001</td>
+      <td>M</td>
+      <td>M</td>
+      <td>7</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>{'type': 'Point', 'coordinates': [0, 0]}</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>299533742</td>
+      <td>2025-01-16T00:00:00.000</td>
+      <td>155</td>
+      <td>RAPE 2</td>
+      <td>104</td>
+      <td>RAPE</td>
+      <td>PL 1303001</td>
+      <td>F</td>
+      <td>K</td>
+      <td>81</td>
+      <td>...</td>
+      <td>1005319</td>
+      <td>190473</td>
+      <td>40.6894642952604</td>
+      <td>-73.9240290899499</td>
+      <td>{'type': 'Point', 'coordinates': [-73.92402908...</td>
+      <td>69</td>
+      <td>2</td>
+      <td>17</td>
+      <td>52</td>
+      <td>18181</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unique Offense Levels found: [&#39;M&#39; &#39;F&#39; &#39;V&#39; nan &#39;9&#39; &#39;I&#39;]
+
+Missing values check:
+law_cat_cd    2
+perp_race     0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-cleaning-preparation">
+<h2>3. Data Cleaning &amp; Preparation<a class="headerlink" href="#data-cleaning-preparation" title="Link to this heading">#</a></h2>
+<p>To ensure accurate visualization:</p>
+<ol class="arabic simple">
+<li><p>We will drop rows where <code class="docutils literal notranslate"><span class="pre">law_cat_cd</span></code> is missing.</p></li>
+<li><p>We will map the single-letter codes (‘F’, ‘M’, ‘V’) to their full names (‘Felony’, ‘Misdemeanor’, ‘Violation’) for better readability in the charts.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Drop rows with missing Level of Offense</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;law_cat_cd&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># 2. Map the codes to full names</span>
+<span class="c1"># Dictionary mapping based on NYPD metadata</span>
+<span class="n">level_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="s1">&#39;Felony (Severe)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="s1">&#39;Misdemeanor (Minor)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="s1">&#39;Violation (Cite)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="s1">&#39;Infraction&#39;</span> <span class="c1"># Creating a catch-all just in case</span>
+<span class="p">}</span>
+
+<span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;offense_level&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;law_cat_cd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">level_map</span><span class="p">)</span>
+
+<span class="c1"># Check the distribution of cleaned data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;offense_level&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>offense_level
+Misdemeanor (Minor)    597
+Felony (Severe)        388
+Violation (Cite)         9
+Infraction               1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-visualization">
+<h2>4. Analysis &amp; Visualization<a class="headerlink" href="#analysis-visualization" title="Link to this heading">#</a></h2>
+<p><strong>Goal:</strong> We want to compare the <em>percentage</em> composition of each race within each crime category.
+<strong>Visualization Plan:</strong> A <strong>100% Stacked Bar Chart</strong>.</p>
+<ul class="simple">
+<li><p><strong>X-Axis:</strong> Offense Level (Felony vs. Misdemeanor Vs. Violation Vs.Infraction ).</p></li>
+<li><p><strong>Y-Axis:</strong> Proportion of Arrests (0-100%).</p></li>
+<li><p><strong>Color:</strong> Suspect Race.</p></li>
+</ul>
+<p>This visualization will allow us to see if certain racial groups are disproportionately represented in specific types of arrests (e.g., lower-level offenses) relative to others.</p>
+<p>I chose Plotly Express for this visualization because it handles categorical data aggregations efficiently. Unlike static charts, this interactive plot allows readers to hover over specific segments to see the exact counts and percentages for each racial group, making the comparison between Felonies and Misdemeanors more precise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Data Preparation for Plotly</span>
+
+<span class="n">df_counts</span> <span class="o">=</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;offense_level&#39;</span><span class="p">,</span> <span class="s1">&#39;perp_race&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Calculate Percentage</span>
+<span class="n">df_counts</span><span class="p">[</span><span class="s1">&#39;percentage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_counts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;offense_level&#39;</span><span class="p">)[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 3. Create the Interactive Plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">df_counts</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;offense_level&#39;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;percentage&#39;</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;perp_race&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Racial Distribution of Arrests by Offense Severity (Interactive)&#39;</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;offense_level&#39;</span><span class="p">:</span> <span class="s1">&#39;Level of Offense&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;percentage&#39;</span><span class="p">:</span> <span class="s1">&#39;Proportion&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;perp_race&#39;</span><span class="p">:</span> <span class="s1">&#39;Suspect Race&#39;</span>
+    <span class="p">},</span>
+    <span class="n">text_auto</span><span class="o">=</span><span class="s1">&#39;.1%&#39;</span><span class="p">,</span> 
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span> 
+<span class="p">)</span>
+
+<span class="c1"># 4. Fine-tuning the layout</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">yaxis_tickformat</span><span class="o">=</span><span class="s2">&quot;.0%&quot;</span><span class="p">,</span>
+    <span class="n">legend_title_text</span><span class="o">=</span><span class="s1">&#39;Suspect Race&#39;</span>
+<span class="p">)</span>
+
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="conclusion-observations">
+<h2>5. Conclusion &amp; Observations<a class="headerlink" href="#conclusion-observations" title="Link to this heading">#</a></h2>
+<p>Based on the visualization above:</p>
+<p><strong>Observation 1(Overall Disparity)</strong>: The visualization reveals a stark racial disparity in arrest numbers. We observe that for all the offence types recorded, Asian and White arrests represent a significantly tiny portion of the total.Black and White Hispanic suspects combined appear to constitue the vast majority of all arrests, regardless of the the offense leve</p>
+<p><strong>Observation 2</strong>: Interestingly, the racial composition does not shift dramatically when moving from <strong>Misdemeanors</strong> to <strong>Felonies</strong>. This indicates that the racial disparities in policing are structural and persist regardless of whether the alleged crime is a minor infraction or a serious felony.</p>
+<p><strong>Conclusion:</strong>
+This analysis answers the research question by showing that arrest demographics are relatively stable across offense levels, but highly skewed racially. This suggests that factors beyond just “crime severity” likely influence arrest patterns in New York City.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Project1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 12</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-research-question">1. Introduction &amp; Research Question</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-inspection">2. Data Inspection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-preparation">3. Data Cleaning &amp; Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-visualization">4. Analysis &amp; Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-observations">5. Conclusion &amp; Observations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jasmine
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
